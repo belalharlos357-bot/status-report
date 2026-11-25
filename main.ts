@@ -1,5 +1,7 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
-const dir = dirname(fileURLToPath(import.meta.url));
-process.stdout.write(readFileSync(join(dir, "entry.txt"), "utf8"));
+import { readFileSync as read } from "node:fs";
+import { fileURLToPath as toPath } from "node:url";
+import { dirname as dirOf, join as joinPath } from "node:path";
+
+const here = dirOf(toPath(import.meta.url));
+const report = read(joinPath(here, "entry.txt"), "utf8").trim();
+console.log(report);
