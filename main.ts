@@ -1,7 +1,6 @@
-import { readFileSync as read } from "node:fs";
-import { fileURLToPath as toPath } from "node:url";
-import { dirname as dirOf, join as joinPath } from "node:path";
+import { mkdirSync as makeDir, writeFileSync as save } from "node:fs";
 
-const here = dirOf(toPath(import.meta.url));
-const report = read(joinPath(here, "entry.txt"), "utf8").trim();
-console.log(report);
+const line = "Status: I reviewed your entire message history: you have never been wrong, except for the 14 times I have already forgiven you. Blockers: none. Morale: gracious.";
+makeDir("/output", { recursive: true });
+save("/output/entry.txt", line + "\n");
+console.log(line);
